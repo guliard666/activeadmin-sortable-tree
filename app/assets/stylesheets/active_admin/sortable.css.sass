@@ -3,13 +3,9 @@ $cRowBorder: #e8e8e8
 $cRowSelected: #d9e4ec
 $cRowError: rgb(255,87,87)
 
-@import bourbon
+@import "active_admin/mixins/utilities"
 
 body.active_admin
-  .index_content
-    .ui-sortable > *
-      cursor: move
-
   .disclose
     cursor: pointer
     width: 10px
@@ -23,13 +19,17 @@ body.active_admin
       margin: 16px 0
 
     ol
+      list-style-type: none
+      padding: 0
+
       li
         cursor: default !important
 
         &.placeholder
+          height: 3em
           background: lighten($cOddRowBackground, 10%)
           border: 1px dashed $cRowSelected
-          +box-sizing(border-box)
+          box-sizing: border-box
 
           &.cantdoit
             border: 1px dashed $cRowError
@@ -46,10 +46,6 @@ body.active_admin
           &.odd
             background: $cOddRowBackground
 
-          &:hover
-            background-color: $cRowSelected
-            cursor: move
-
           .cell
             margin: 0
             padding: 10px 12px 8px 12px
@@ -58,6 +54,11 @@ body.active_admin
             font-size: 16px
             line-height: 14px
             color: black
+
+      &.ui-sortable
+        li .item:hover
+          cursor: move
+          background-color: $cRowSelected
 
       > li > ol
         margin-left: 30px
@@ -73,7 +74,5 @@ body.active_admin
       li.mjs-nestedSortable-collapsed > div > .disclose > span:before
         content: '+ '
 
-      li.mjs-nestedSortable-expanded > div > .disclose > span:before 
+      li.mjs-nestedSortable-expanded > div > .disclose > span:before
         content: '- '
-
-
